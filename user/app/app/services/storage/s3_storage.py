@@ -25,7 +25,6 @@ class S3Storage(BaseStorage):
         self._init_client()
 
     def _init_client(self):
-        print("Called")
         self._client: BaseClient = self._session.client(
             service_name=self.service_name,
             endpoint_url=self.endpoints_url,

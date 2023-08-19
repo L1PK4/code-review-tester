@@ -29,12 +29,11 @@ services:
     ports:
       - "8192:8081"
 
-
   pgadmin:
     image: dpage/pgadmin4
-#    networks:
-#      - public-network
-#      - default
+    #    networks:
+    #      - public-network
+    #      - default
     ports:
       - "5050:5050"
 
@@ -43,15 +42,15 @@ services:
     env_file:
       - .env
 
-  backend:
-    image: '${DOCKER_IMAGE_BACKEND?Variable not set}:${TAG-latest}'
+  user:
+    image: '${DOCKER_IMAGE_USER?Variable not set}:${TAG-latest}'
     depends_on:
       - db
     ports:
       - "81:80"
       - "8899:8888"
     volumes:
-      - ./backend/app:/app
+      - ./user/app:/app
     environment:
       - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
       - SERVER_NAME=${DOMAIN?Variable not set}
@@ -60,8 +59,8 @@ services:
       - SMTP_HOST=${SMTP_HOST}
       - NGINX_PORT=${NGINX_PORT}
     build:
-      context: ./backend
-      dockerfile: backend.dockerfile
+      context: ./user
+      dockerfile: user.dockerfile
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
         INSTALL_JUPYTER: ${INSTALL_JUPYTER-true}
@@ -69,5 +68,3 @@ services:
     command: /start-reload.sh
     env_file:
       - .env
-
-
