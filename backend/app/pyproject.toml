@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "base project"
+version = "0.1.0"
+description = ""
+authors = ["Vladimir Rudomakha <theonevolodya@mail.ru>"]
+
+[tool.poetry.dependencies]
+python = "3.11.2"
+uvicorn = "0.21.0"
+fastapi = "0.94.0"
+python-multipart = "0.0.6"
+email-validator = "1.3.1"
+requests = "2.28.2"
+passlib = {extras = ["bcrypt"], version = "1.7.4"}
+tenacity = "8.2.2"
+pydantic = "1.10.6"
+emails = "0.6"
+raven = "6.10.0"
+gunicorn = "20.1.0"
+jinja2 = "3.1.2"
+psycopg2-binary = "2.9.5"
+alembic = "1.10.2"
+alembic-enums = "0.1.1"
+sqlalchemy = "1.4.46"
+python-jose = {extras = ["cryptography"], version = "3.3.0"}
+paginate-sqlalchemy="0.3.1"
+boto3 = "1.26.89"
+user-agents = "2.2.0"
+pyfcm="1.5.4"
+httpcore = "<=0.15"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+isort = "^4.3.21"
+sqlalchemy-stubs = "^0.3"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+line_length = 88
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
